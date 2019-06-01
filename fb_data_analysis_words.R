@@ -98,7 +98,9 @@ tf_idf_clean %>%
   ggtitle("Tf-idf Scores for the Top Words in each Domain") +
   coord_flip() #visualize top 10 terms for each domain
 
-list <- c(`2`="Animals",`5`="Finance, Economics, and Trade",`1`="Crops and Soils",`10`="Family and Community Affairs",`3`="Farm Equipment",`6`="Environment and Natural Resources",`8`="Communication/Information Technology",`9`="Family and Community Health/Nutrition",`7`="Farm Technology",`4`="Energy")
+list <- c(`2`="Animals",`5`="Finance, Economics, and Trade",`1`="Crops and Soils",`10`="Family and Community Affairs",
+          `3`="Farm Equipment",`6`="Environment and Natural Resources",`8`="Communication/Information Technology",
+          `9`="Family and Community Health/Nutrition",`7`="Farm Technology",`4`="Energy")
 
 #plotting top word frequencies in all domains----
 tidy_word_c_freq %>%
@@ -106,14 +108,17 @@ tidy_word_c_freq %>%
   ggplot(aes(x = reorder(word, -n), y = n)) + 
   geom_bar(stat = "identity", fill="mediumpurple3", colour="black") +
   geom_text(aes(label=n), vjust=1.5) +
-  xlab("Word") + ylab("Count") + theme(axis.text = element_text(colour="black"))   + ggtitle("Top 10 Word Frequencies")
+  xlab("Word") + ylab("Count") + theme(axis.text = element_text(colour="black")) +
+  ggtitle("Top 10 Word Frequencies")
 
 #plotting total words in each domain----
 total_domain_words_c %>%
   ggplot(aes(x = reorder(domain, -total), y = total)) + 
   geom_bar(stat = "identity", fill="mediumpurple3", colour="black") +
   geom_text(aes(label=total), vjust=1.5) +
-  xlab("Domain") + ylab("Count") + theme(axis.text = element_text(colour="black")) + ggtitle("Word Totals by Domain") + scale_x_discrete(labels=c("Animals","Finance","Crops","Family","Equipment","Environment","Comm. Tech","Health","Farm Tech","Energy"))
+  xlab("Domain") + ylab("Count") + theme(axis.text = element_text(colour="black")) + 
+  ggtitle("Word Totals by Domain") + 
+  scale_x_discrete(labels=c("Animals","Finance","Crops","Family","Equipment","Environment","Comm. Tech","Health","Farm Tech","Energy"))
 
 #plotting top word frequencies in each domain----
 domain1 <- subset(domain_words_c, domain=="1")
