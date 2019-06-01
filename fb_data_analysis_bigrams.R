@@ -11,8 +11,7 @@ library(ggraph)
 library(stringr)
 
 #read in data----
-raw_data <- read_csv("FB_Mined_Data_Stripped.csv",
-                     locale = locale(encoding = "ASCII"))
+raw_data <- read_csv("FB_Mined_Data_Stripped.csv", locale = locale(encoding = "ASCII"))
 names(raw_data) <- c("text", "domain")
 View(raw_data)
 #raw_df <- as.data.frame(raw_data) don't run this unless specifically needed
@@ -57,7 +56,8 @@ bigram_freq_all %>%
   ggplot(aes(x = reorder(bigram, -n), y = n)) + 
   geom_bar(stat = "identity", fill="mediumpurple3", colour="black") +
   geom_text(aes(label=n), vjust=1.5) +
-  xlab("Bigram") + ylab("Count") + theme(axis.text = element_text(colour="black")) +
+  xlab("Bigram") + ylab("Count") + 
+  theme(axis.text = element_text(colour="black")) +
   scale_y_continuous(breaks=seq(0,14,2)) +
   ggtitle("Top 10 Bigram Frequencies")
 
@@ -67,7 +67,8 @@ bigram_dom_total %>%
   geom_bar(stat = "identity", fill="mediumpurple3", colour="black") +
   geom_text(aes(label=total), vjust=1.5) +
   xlab("Domain") + ylab("Count") + theme(axis.text = element_text(colour="black"))+
-  ggtitle("Bigram Totals by Domain") + scale_x_discrete(labels=c("Animals","Finance","Crops","Family","Equipment","Environment","Comm. Tech","Health","Energy","Farm Tech"))
+  ggtitle("Bigram Totals by Domain") + 
+  scale_x_discrete(labels=c("Animals","Finance","Crops","Family","Equipment","Environment","Comm. Tech","Health","Energy","Farm Tech"))
 
 #top bigrams in each domain----
 domain1 <- subset(bigram_freq_dom, domain=="1")
